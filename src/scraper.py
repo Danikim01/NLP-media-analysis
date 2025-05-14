@@ -1,19 +1,29 @@
 import requests
 from bs4 import BeautifulSoup
+from utils import validar_seccion
 import pandas as pd
 import time
 import os
+import json
 
 BASE_URL = "https://www.pagina12.com.ar"
-SECCION = "el-pais"
-MAX_PAGINAS = 2
 ARTICULOS = []
+CONFIG_PATH = "configs/scraper_config.json"
+
+with open(CONFIG_PATH) as f:
+    config = json.load(f)
+
+SECCION = config["section"]
+MAX_PAGINAS = config["max_pages"]
+
+if not validar_seccion(SECCION):
+    raise ValueError(f"'{SECCION}' no es una sección válida.")
 
 def get_links_de_seccion(seccion, max_paginas):
     links = []
     for i in range(max_paginas):
         url = f"{BASE_URL}/secciones/{seccion}?page={i}"
-        print(f"Scrapeando: {url}")
+        print(f"Scraping: {url}")
         resp = requests.get(url)
         soup = BeautifulSoup(resp.text, "html.parser")
 
@@ -81,5 +91,5 @@ if __name__ == "__main__":
     os.makedirs("data/raw", exist_ok=True)
 
     # Guardar a CSV con codificación segura
-    df.to_csv("data/raw/pagina12_articulos.csv", index=False, encoding="utf-8", quotechar='"')
-    print(f"Guardados {len(df)} artículos en 'data/raw/pagina12_articulos.csv'")
+    df.to_csv(f"data/raw/articulos_{SECCION}.csv", index=False, encoding="utf-8", quotechar='"')
+    print(f"Guardados {len(df)} artículos en 'data/raw/articulos_{SECCION}.csv'")
