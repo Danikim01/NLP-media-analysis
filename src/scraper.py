@@ -26,9 +26,7 @@ def get_links_de_seccion(seccion, max_paginas, starting_page=0):
         url = f"{BASE_URL}/secciones/{seccion}?page={i}"
         print(f"Scraping: {url}")
         try:
-            print(f"Scraping página {i}... before request")
             resp = requests.get(url, timeout=10)
-            print(f"Scraping página {i}... after request")
             soup = BeautifulSoup(resp.text, "html.parser")
             articulos = soup.find_all("article")
         except requests.exceptions.RequestException as e:
@@ -47,9 +45,9 @@ def get_links_de_seccion(seccion, max_paginas, starting_page=0):
         time.sleep(1)
 
         # Pausa para evitar bloqueos
-        if (i - starting_page + 1) % 15 == 0:
-            print("Pausa larga para evitar bloqueos...")
-            time.sleep(5)
+        # if (i - starting_page + 1) % 15 == 0:
+        #     print("Pausa larga para evitar bloqueos...")
+        #     time.sleep(5)
     return links
 
 def scrapear_articulo(url):
