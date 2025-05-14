@@ -29,7 +29,7 @@ df = pd.read_csv(file_path)
 articulos = df["contenido"].dropna().tolist()
 
 # Preprocesar (probá cambiar estos flags)
-preprocesados = [preprocesar(a, stopwords=True, lematizar_texto=True) for a in articulos]
+preprocesados = [preprocesar(a, stopwords=REMOVE_STOPWORDS, lematizar_texto=LEMMATIZE) for a in articulos]
 
 # Concatenar todo el corpus
 texto_completo = " ".join(preprocesados)
@@ -38,7 +38,7 @@ texto_completo = " ".join(preprocesados)
 wordcloud = WordCloud(width=1000, height=600, background_color="white", colormap="inferno").generate(texto_completo)
 
 # Guardar wordcloud como archivo PNG
-output_path = f"outputs/wordcloud_{SECCION}.png"
+output_path = f"outputs/ff_wordcloud_{SECCION}.png"
 wordcloud.to_file(output_path)
 
 print(f"Wordcloud guardada en {output_path}")

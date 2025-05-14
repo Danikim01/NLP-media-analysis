@@ -15,19 +15,27 @@ with open(CONFIG_PATH) as f:
 
 SECCION = config["section"]
 MAX_PAGINAS = config["max_pages"]
+STARTING_PAGE = config.get("starting_page", 0)
 
 if not validar_seccion(SECCION):
     raise ValueError(f"'{SECCION}' no es una sección válida.")
 
-def get_links_de_seccion(seccion, max_paginas):
+def get_links_de_seccion(seccion, max_paginas, starting_page=0):
     links = []
-    for i in range(max_paginas):
+    for i in range(starting_page, starting_page + max_paginas - 1):
         url = f"{BASE_URL}/secciones/{seccion}?page={i}"
         print(f"Scraping: {url}")
-        resp = requests.get(url)
-        soup = BeautifulSoup(resp.text, "html.parser")
+        try:
+            print(f"Scraping página {i}... before request")
+            resp = requests.get(url, timeout=10)
+            print(f"Scraping página {i}... after request")
+            soup = BeautifulSoup(resp.text, "html.parser")
+            articulos = soup.find_all("article")
+        except requests.exceptions.RequestException as e:
+            print(f"Error al cargar página {url}: {e}")
+            continue
 
-        for articulo in soup.find_all("article"):
+        for articulo in articulos:
             # Saltear exclusivos para socios
             if articulo.find("div", class_="exclusive-teaser"):
                 continue
@@ -37,6 +45,11 @@ def get_links_de_seccion(seccion, max_paginas):
                 link = BASE_URL + a_tag["href"]
                 links.append(link)
         time.sleep(1)
+
+        # Pausa para evitar bloqueos
+        if (i - starting_page + 1) % 15 == 0:
+            print("Pausa larga para evitar bloqueos...")
+            time.sleep(5)
     return links
 
 def scrapear_articulo(url):
@@ -50,7 +63,7 @@ def scrapear_articulo(url):
         cuerpo = " ".join([p.get_text(strip=True) for p in soup.find_all("p")])
         cuerpo = cuerpo.replace("\n", " ").replace("\r", " ")
         # cuerpo = cuerpo.replace('"', "'")  # reemplaza comillas dobles internas por comillas simples
-        if len(cuerpo) < 100:  # umbral para evitar notas vacías o mal parseadas
+        if len(cuerpo) < 50:  # umbral para evitar notas vacías o mal parseadas
             return None
 
         # Autor
@@ -78,18 +91,23 @@ def scrapear_articulo(url):
         return None
 
 if __name__ == "__main__":
-    links = get_links_de_seccion(SECCION, MAX_PAGINAS)
+    STARTING_PAGE = config.get("starting_page", 0)
+    links = []
 
-    for link in links:
-        articulo = scrapear_articulo(link)
-        if articulo:
-            ARTICULOS.append(articulo)
-
-    df = pd.DataFrame(ARTICULOS)
-
-    # Asegurarse de que el directorio existe
-    os.makedirs("data/raw", exist_ok=True)
-
-    # Guardar a CSV con codificación segura
-    df.to_csv(f"data/raw/articulos_{SECCION}.csv", index=False, encoding="utf-8", quotechar='"')
-    print(f"Guardados {len(df)} artículos en 'data/raw/articulos_{SECCION}.csv'")
+    try:
+        links = get_links_de_seccion(SECCION, MAX_PAGINAS, STARTING_PAGE)
+        for link in links:
+            articulo = scrapear_articulo(link)
+            if articulo:
+                ARTICULOS.append(articulo)
+    except KeyboardInterrupt:
+        print("Scraping interrumpido manualmente.")
+    finally:
+        if ARTICULOS:
+            df = pd.DataFrame(ARTICULOS)
+            os.makedirs("data/raw", exist_ok=True)
+            nombre_archivo = f"data/raw/articulos_{SECCION}.csv"
+            df.to_csv(nombre_archivo, index=False, encoding="utf-8", quotechar='"')
+            print(f"Guardados {len(df)} artículos en '{nombre_archivo}'")
+        else:
+            print("No se guardaron artículos.")
