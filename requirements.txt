@@ -5,3 +5,6 @@ spacy
 nltk
 matplotlib
 wordcloud
+jupyter
+transformers
+torch
