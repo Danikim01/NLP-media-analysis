@@ -1,5 +1,5 @@
 {
     "section": "economia",
-    "remove_stopwords": false,
-    "lemmatize": false
+    "remove_stopwords": true,
+    "lemmatize": true
   }
