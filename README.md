@@ -34,3 +34,10 @@ Evaluar y visualizar cómo varía el tono emocional y el grado de objetividad de
 
 - **Modelado temático**:
   - `gensim` (LDA para topic modeling)
+
+## Pasos
+1. Primero se realizó el scraping de ~200 páginas de cada sección (Economia, El Mundo, El País, Sociedad, Negrx) de la página web de Página 12. Se hizo con el siguiente comando:
+```bash
+
+```
+2. 
