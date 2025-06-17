@@ -39,8 +39,8 @@ def analizar_subjetividad(texto):
     except:
         return None
 
-def procesar_articulos(path):
-    df = pd.read_csv(path).dropna(subset=["titulo", "contenido"])
+def procesar_articulos(path, max_articles = 500):
+    df = pd.read_csv(path).dropna(subset=["titulo", "contenido"]).head(max_articles)
     titulos = df["titulo"].astype(str)
     contenidos = df["contenido"].astype(str)
 
@@ -143,7 +143,7 @@ def experimento_1():
         if not os.path.exists(archivo):
             print(f"Archivo no encontrado: {archivo}")
             continue
-        df = procesar_articulos(archivo)
+        df = procesar_articulos(archivo, 500)
         df["seccion"] = seccion
         todos.append(df)
 

@@ -9,3 +9,5 @@ jupyter
 transformers
 torch
 scipy
+seaborn
+deep_translator
