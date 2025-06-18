@@ -35,9 +35,82 @@ Evaluar y visualizar cómo varía el tono emocional y el grado de objetividad de
 - **Modelado temático**:
   - `gensim` (LDA para topic modeling)
 
-## Pasos
-1. Primero se realizó el scraping de ~200 páginas de cada sección (Economia, El Mundo, El País, Sociedad, Negrx) de la página web de Página 12. Se hizo con el siguiente comando:
+## Instalación de Dependencias
+Se deben instalar las dependencias necesarias
 ```bash
-
+pip install -r requirements.txt
 ```
-2. 
+## Scraping de Artículos
+Primero se realizó el scraping de ~200 páginas de cada sección (*Economia*, *El Mundo*, *El País*, *Sociedad*, *Negrx*) de la página web de [Página 12](https://www.pagina12.com.ar/). Se hizo ejecutando el siguiente archivo:
+```bash
+python src/scraper.py
+```
+Que automáticamente toma las configuraciones especificadas en el archivo 'configs/scraper_config.json'. Un ejemplo de posibles valores para esta configuración:
+```json
+{
+  "section": "el-mundo",
+  "max_pages": 200,
+  "starting_page": 0
+}
+```
+Los valores válidos para 'section' son: {*economia*, *el-pais*, *el-mundo*, *sociedad*, *negrx*}
+## Análisis Exploratorio
+1. WordClouds y Frecuencias
+  Ejecutar el siguiente comando
+  ```bash
+  python src/wordcloud_analysis.py
+  ```
+  Se tomarán las configuraciones del archivo 'configs/analysis_config.json' donde se especifica la sección y preferencias de preprocesamiento:
+  ```json
+  {
+    "section": "economia",
+    "remove_stopwords": true,
+    "lemmatize": false
+  }
+  ``` 
+  Se generará la WordCloud y gráfico de frecuencias con las 20 palabras más frecuentes de la sección especificada.
+2. WordCount
+  Ejecutar el siguiente comando
+  ```bash
+  python src/wordcount_analysis.py
+  ```
+  Genera un gráfico de barras con el promedio de cantidad de palabras por artículo en las secciones: *Economía*, *Sociedad*, *El País*.
+3. Autoría
+  Ejecutar el siguiente comando
+  ```bash
+  python src/authorship_analysis.py
+  ```
+  Genera gráfico comparando porcentaje de artículos con y sin autor en las 5 secciones.
+4. Emocionalidad
+  Ejecutar el siguiente comando
+  ```bash
+  python src/emotional_analysis.py
+  ```
+  Utiliza [*BERT base multilingual uncased sentiment*](https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment#accuracy) para medir la valencia emocional de 50 artículos de cada sección. Toma como máximo 512 tokens, los artículos que se exceden de ese límite serán truncados. Se genera un gráfico de barras con el promedio de puntaje de valencia emocional de cada sección, donde un puntaje muy bajo (1) representa sentimiento negativo, mientras que uno alto (5) representa sentimiento positivo.
+
+## Experimentos
+### Experimento 1
+Evaluar emocionalidad y subjetividad de los artículos periodísticos
+
+Se realizan las traducciones de los artículos de cada sección (su título y contenido):
+```bash
+python src/experiment1/translate_articles.py
+```
+Las traducciones quedan guardadas en '*data/translated*'.
+Luego se debe realizar el procesamiento de los artículos de cada sección para analizar emocionalidad y subjetividad:
+```bash
+python src/experiment1/process_section.py
+```
+Donde se debe aclarar en la configuración (*process_config.json*) la sección que se desea procesar:
+```json
+{
+  "section": "economia"
+}
+```
+Una vez procesadas todas las secciones, se deben generar los gráficos comparativos:
+```bash
+python src/experiment1/process_section.py
+```
+### Experimento 2
+### Experimento 3
+### Experimento 4
