@@ -28,17 +28,25 @@ def analizar_subjetividad(texto):
         return tb.sentiment.subjectivity
     except:
         return None
+    
+def get_snippet(row, num_words=50):
+    title = row["titulo_en"]
+    content_words = row["contenido_en"].split()
+    snippet = " ".join(content_words[:num_words])
+    return f"{title}. {snippet}"
 
 def procesar_seccion(seccion):
     input_path = f"data/translated/traducido_articulos_{seccion}.csv"
-    output_path = f"outputs/experiment_1/resultados_{seccion}.csv"
+    output_path = f"outputs/experiment1/resultados_{seccion}.csv"
 
     if not os.path.exists(input_path):
         print(f"No se encontró el archivo traducido para la sección {seccion}")
         return
 
-    df = pd.read_csv(input_path).dropna(subset=["titulo_traducido", "contenido_traducido"])
+    df = pd.read_csv(input_path).dropna(subset=["titulo_en", "contenido_en"])
+    # textos = df.apply(get_snippet, axis=1)
     textos = df["titulo_en"] + ". " + df["contenido_en"]
+
 
     print(f"Procesando sección {seccion} ({len(df)} artículos)...")
     df["emocionalidad"] = [analizar_emocionalidad(t) for t in tqdm(textos)]

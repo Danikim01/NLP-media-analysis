@@ -11,3 +11,4 @@ torch
 scipy
 seaborn
 deep_translator
+textblob
