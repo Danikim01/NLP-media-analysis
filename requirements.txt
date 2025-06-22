@@ -12,3 +12,4 @@ scipy
 seaborn
 deep_translator
 textblob
+vaderSentiment
