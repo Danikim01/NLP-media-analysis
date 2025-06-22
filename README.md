@@ -120,6 +120,58 @@ Los resultados se guardarán en *outputs/experiment1/finales*
 ### Experimento 2
 Análisis temático mediante LDA
 
+Este experimento utiliza técnicas de modelado temático (Latent Dirichlet Allocation - LDA) para descubrir las principales temáticas presentes en los artículos, así como su relación con la emocionalidad, subjetividad y autoría.
+
+Paso 1: Procesamiento y modelado LDA
+Los artículos se preprocesan (lematización y remoción de stopwords) y se aplica LDA sobre cada sección por separado para identificar temas dominantes.
+
+Ejecutar el siguiente comando:
+```bash
+python src/experiment2/process_lda.py
+```
+Esto realiza:
+
+Preprocesamiento de los artículos por sección
+
+Modelado LDA con 6 tópicos por sección
+
+Asociación de cada artículo a su tópico dominante
+
+Guardado de resultados y palabras clave por tópico en:
+```bash
+outputs/experiment2/
+```
+Paso 2: Generación de visualizaciones
+Una vez asignado el tópico dominante a cada artículo, se generan visualizaciones para responder las siguientes preguntas:
+
+¿Qué temáticas dominan cada sección?
+
+¿Es posible identificar patrones de subjetividad/emocionalidad asociados a ciertos tópicos?
+
+¿Autores específicos presentan patrones emocionales particulares por tema?
+
+Ejecutar:
+```bash
+python src/experiment2/graphing.py
+```
+Se generarán automáticamente los siguientes gráficos:
+
+Gráfico de barras: temas más frecuentes por sección
+
+Gráfico de barras: emocionalidad promedio por tópico
+
+Gráfico de barras: subjetividad promedio por tópico
+
+Gráfico de barras: tópicos más frecuentes en artículos con alta vs baja emocionalidad
+
+Heatmap: promedio de emocionalidad por autor y tópico
+
+Gráfico global: comparación de tópicos entre artículos más emocionales vs menos emocionales (todas las secciones)
+
+Los resultados se guardan automáticamente en:
+```bash
+outputs/experiment2/
+```
 ### Experimento 3
 Evaluar la consistencia y diferencias entre herramientas que analizan emocionalidad
 
