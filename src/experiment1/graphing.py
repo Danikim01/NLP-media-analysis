@@ -39,9 +39,9 @@ print("\n--- Promedios por sección ---")
 print(resumen.to_string(index=False))
 
 color_map = {
-    "emocionalidad": "#FF6F61",  # reddish
-    "subjetividad": "#6A5ACD",   # purplish
-    "objetividad": "#2E8B57",    # greenish
+    "emocionalidad": "#FF6F61",  
+    "subjetividad": "#6A5ACD",   
+    "objetividad": "#2E8B57",   
 }
 
 for var in ["emocionalidad", "subjetividad", "objetividad"]:

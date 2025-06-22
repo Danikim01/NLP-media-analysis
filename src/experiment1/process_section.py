@@ -1,4 +1,3 @@
-# procesar_seccion.py
 import pandas as pd
 import os
 from transformers import AutoTokenizer, AutoModelForSequenceClassification

@@ -30,7 +30,7 @@ for seccion in SECCIONES:
     for t in textos:
         try:
             result = classifier(t[:512])[0]  # recortamos a 512 tokens
-            estrellas = int(result["label"][0])  # "4 stars" -> 4
+            estrellas = int(result["label"][0]) 
             puntajes.append(estrellas)
         except Exception as e:
             print(f"Error al analizar un texto: {e}")

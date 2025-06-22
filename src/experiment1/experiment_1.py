@@ -45,21 +45,11 @@ def procesar_articulos(path, max_articles = 500):
     contenidos = df["contenido"].astype(str)
 
     full = titulos + ". " + contenidos
-    # snippet = titulos + ". " + contenidos.str.split().str[:NUM_WORDS_SNIPPET].str.join(" ")
-    # solo_titulo = titulos
 
     print(f"Analizando emocionalidad y subjetividad para {len(df)} artículos...")
     df["emocionalidad_full"] = [analizar_emocionalidad(t) for t in tqdm(full)]
-    # df["emocionalidad_snippet"] = [analizar_emocionalidad(t) for t in tqdm(snippet)]
-    # df["emocionalidad_titulo"] = [analizar_emocionalidad(t) for t in tqdm(solo_titulo)]
-
     df["subjetividad_full"] = [analizar_subjetividad(t) for t in tqdm(full)]
-    # df["subjetividad_snippet"] = [analizar_subjetividad(t) for t in tqdm(snippet)]
-    # df["subjetividad_titulo"] = [analizar_subjetividad(t) for t in tqdm(solo_titulo)]
-
     df["objetividad_full"] = 1 - df["subjetividad_full"]
-    # df["objetividad_snippet"] = 1 - df["subjetividad_snippet"]
-    # df["objetividad_titulo"] = 1 - df["subjetividad_titulo"]
 
     return df
 
