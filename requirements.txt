@@ -13,3 +13,6 @@ seaborn
 deep_translator
 textblob
 vaderSentiment
+protobuf
+tiktoken
+sentencepiece

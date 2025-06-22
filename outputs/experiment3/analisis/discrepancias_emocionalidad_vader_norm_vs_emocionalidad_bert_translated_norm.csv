@@ -1,0 +1,6 @@
+titulo,seccion,emocionalidad_vader_norm,emocionalidad_bert_translated_norm,diff_emocionalidad_vader_norm_emocionalidad_bert_translated_norm
+Un retroceso inadmisible en la protección de los derechos laborales,el-pais,0.9847885914435828,-0.966474952736839,1.9512635441804218
+Trump otorgó 25 indultos y conmutaciones de penas en un solo día,el-mundo,0.9918939204403305,-0.9285893136117159,1.9204832340520466
+Fábrica de calzado deportivo en riesgo de cierre,economia,0.9604703527645735,-0.9470764723313023,1.9075468250958758
+El dólar blue cotizó a 1050 pesos,economia,0.9931948961721291,-0.9069692670743298,1.9001641632464588
+Demandan al Gobierno de Trump por dar de baja a la mitad del Departamento de Educación,el-mundo,0.9431573680260195,-0.8969551980560992,1.8401125660821187

@@ -1,0 +1,6 @@
+titulo,seccion,emocionalidad_bert_norm,emocionalidad_roberta_multi_norm,diff_emocionalidad_bert_norm_emocionalidad_roberta_multi_norm
+"Trump ordena la reapertura de la prisión de Alcatraz para los ""delincuentes más despiadados""",el-mundo,0.5776646753172305,-0.7575865959524817,1.3352512712697122
+Condena a un hombre por violar a sus cinco hijas,sociedad,0.4491430516047361,-0.7977330223686068,1.2468760739733429
+"El Cabildo, la primera cárcel de la Argentina y una continuidad histórica",negrx,0.672985572839395,-0.45307073554392574,1.1260563083833208
+Cape Coast Castle y la Resiliencia de Ghana,negrx,0.8683339692990708,-0.2498489524771662,1.1181829217762371
+"Cemitério dos Pretos Novos: resitencia, memoria y esclavitud en Brasil",negrx,0.6310447210976644,-0.4818224056601903,1.1128671267578547

@@ -44,12 +44,14 @@ def procesar_seccion(seccion):
 
     df = pd.read_csv(input_path).dropna(subset=["titulo_en", "contenido_en"])
     # textos = df.apply(get_snippet, axis=1)
-    textos = df["titulo_en"] + ". " + df["contenido_en"]
+    # textos = df["titulo"] + ". " + df["contenido"]
+    textos_bert = df["titulo"] + ". " + df["contenido"]
+    textos_textblob = df["titulo_en"] + ". " + df["contenido_en"]
 
 
     print(f"Procesando sección {seccion} ({len(df)} artículos)...")
-    df["emocionalidad"] = [analizar_emocionalidad(t) for t in tqdm(textos)]
-    df["subjetividad"] = [analizar_subjetividad(t) for t in tqdm(textos)]
+    df["emocionalidad"] = [analizar_emocionalidad(t) for t in tqdm(textos_bert)]
+    df["subjetividad"] = [analizar_subjetividad(t) for t in tqdm(textos_textblob)]
     df["objetividad"] = 1 - df["subjetividad"]
 
     df.to_csv(output_path, index=False)

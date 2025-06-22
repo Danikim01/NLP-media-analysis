@@ -1,0 +1,6 @@
+titulo,seccion,emocionalidad_vader,emocionalidad_bert_translated,diff_emocionalidad_vader_emocionalidad_bert_translated
+El Monumento Nacional de las Mujeres en Sudáfrica,negrx,-0.9484,4.4411516189575195,5.38955161895752
+Buffalo Soldiers National Museum: Honrando la historia Afroestadounidense,negrx,-0.8316,4.5137481689453125,5.345348168945312
+"Museo Nacional de la Esclavitud, un recorrido por la historia angoleña",negrx,-0.9678,4.370472431182861,5.338272431182862
+Impresionante incendio en una pañalera de Lomas del Mirador: colapsó el techo y evacúan a los vecinos,sociedad,-0.8134,4.5086989402771,5.322098940277099
+La Isla Robben: Testimonio de resistencia y de triunfo del combate al racismo,negrx,-0.9963,4.303051471710205,5.299351471710205

@@ -1,0 +1,6 @@
+titulo,seccion,emocionalidad_bert,emocionalidad_vader,diff_emocionalidad_bert_emocionalidad_vader
+El Monumento Nacional de las Mujeres en Sudáfrica,negrx,4.457937717437744,-0.9484,5.4063377174377445
+Buffalo Soldiers National Museum: Honrando la historia Afroestadounidense,negrx,4.463471412658691,-0.8316,5.295071412658691
+La Isla Robben: Testimonio de resistencia y de triunfo del combate al racismo,negrx,4.284493446350098,-0.9963,5.280793446350097
+"Museo Nacional de la Esclavitud, un recorrido por la historia angoleña",negrx,4.276124000549316,-0.9678,5.243924000549317
+"El Cabildo, la primera cárcel de la Argentina y una continuidad histórica",negrx,4.20900821685791,-0.9829,5.19190821685791

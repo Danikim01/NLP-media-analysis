@@ -8,13 +8,13 @@ from scipy.stats import ttest_ind
 # CONFIGURACION
 SECCIONES = ["economia", "el-mundo", "el-pais", "negrx", "sociedad"]
 RESULTS_DIR = "outputs/experiment1"
-OUT_DIR = "outputs/experiment1/truncados"
+OUT_DIR = "outputs/experiment1/finales"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # Juntar resultados
 dfs = []
 for seccion in SECCIONES:
-    path = os.path.join(RESULTS_DIR, f"resultados_truncados_{seccion}.csv")
+    path = os.path.join(RESULTS_DIR, f"resultados_{seccion}.csv")
     if not os.path.exists(path):
         print(f"No se encuentra el archivo para {seccion}: {path}")
         continue

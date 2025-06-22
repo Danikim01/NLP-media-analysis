@@ -1,0 +1,6 @@
+titulo,seccion,emocionalidad_roberta_multi_norm,emocionalidad_vader_norm,diff_emocionalidad_roberta_multi_norm_emocionalidad_vader_norm
+"El Financial Times incluyó a Javier Milei en ""el club de fans"" de Donald Trump",el-pais,-0.5685563170828379,0.9845884413309984,1.5531447584138363
+El gobierno de Trump envió por error un plan de guerra secreto a un periodista,el-mundo,-0.6316652721671439,0.9147360520390293,1.5464013242061732
+El gobierno de Trump envió por error un plan de guerra secreto a un periodista,el-mundo,-0.6316652721671439,0.9147360520390293,1.5464013242061732
+EE.UU. aplazó los aranceles para el sector automotor de México y Canadá,el-mundo,-0.5272535783609869,0.9937953465098825,1.5210489248708694
+El nuevo mapa arancelario tras la tregua anunciada por Trump,el-mundo,-0.5314090708896102,0.9873905429071805,1.5187996137967907

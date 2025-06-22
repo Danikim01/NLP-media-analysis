@@ -1,0 +1,6 @@
+titulo,seccion,emocionalidad_roberta_multi_norm,emocionalidad_bert_translated_norm,diff_emocionalidad_roberta_multi_norm_emocionalidad_bert_translated_norm
+"Trump ordena la reapertura de la prisión de Alcatraz para los ""delincuentes más despiadados""",el-mundo,-0.7575865959524817,0.6943822070452352,1.451968802997717
+Impresionante incendio en una pañalera de Lomas del Mirador: colapsó el techo y evacúan a los vecinos,sociedad,-0.4378848957501066,0.8014483206236651,1.2393332163737716
+Old Slave Mart Museum: un testimonio viviente de la historia de Charleston,negrx,-0.3638978087598661,0.802790581559272,1.166688390319138
+Condena a un hombre por violar a sus cinco hijas,sociedad,-0.7977330223686068,0.36425842548712506,1.1619914478557318
+Guerra ignorada,negrx,-0.896812264873763,0.2609251374091677,1.1577374022829305
