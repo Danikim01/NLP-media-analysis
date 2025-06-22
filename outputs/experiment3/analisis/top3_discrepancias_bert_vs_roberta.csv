@@ -1,0 +1,4 @@
+titulo,seccion,emocionalidad_bert,emocionalidad_roberta_multi,emocionalidad_bert_norm,emocionalidad_roberta_multi_norm,diff_bert_roberta
+"Trump ordena la reapertura de la prisión de Alcatraz para los ""delincuentes más despiadados""",el-mundo,4.03417444229126,-0.4019516706466675,0.5776646753172305,-0.7575865959524817,1.3352512712697122
+Condena a un hombre por violar a sus cinco hijas,sociedad,3.798445224761963,-0.4291011095046997,0.4491430516047361,-0.7977330223686068,1.2468760739733429
+"El Cabildo, la primera cárcel de la Argentina y una continuidad histórica",negrx,4.20900821685791,-0.1960196495056152,0.672985572839395,-0.45307073554392574,1.1260563083833208

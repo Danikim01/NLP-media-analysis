@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import zscore
 from scipy.stats import ttest_ind
+import matplotlib.lines as mlines
 
 # CONFIGURACION
 SECCIONES = ["economia", "el-mundo", "el-pais", "negrx", "sociedad"]
@@ -73,25 +74,25 @@ plt.savefig(os.path.join(OUT_DIR, "emocionalidad_vs_subjetividad_economia_negrx.
 plt.close()
 
 # 3. Dispersión emocionalidad vs subjetividad (general)
+full_df["emocionalidad_intensidad"] = (full_df["emocionalidad"] - 3).abs() # Calcular intensidad emocional
 print("\n--- Correlación emocionalidad vs subjetividad (Pearson) ---")
-print(full_df[["emocionalidad", "subjetividad"]].corr(method="pearson"))
+print(full_df[["emocionalidad_intensidad", "subjetividad"]].corr(method="pearson"))
 print("\n--- Estadísticas conjuntas por sección ---")
 print(full_df.groupby("seccion")[["emocionalidad", "subjetividad"]].mean())
 plt.figure(figsize=(10, 6))
-sns.scatterplot(data=full_df, x="emocionalidad", y="subjetividad", hue="seccion", alpha=0.6)
-plt.title("Emocionalidad vs Subjetividad por artículo")
+sns.scatterplot(data=full_df, x="emocionalidad_intensidad", y="subjetividad", hue="seccion", alpha=0.6)
+plt.title("Intensidad emocional vs Subjetividad")
 plt.tight_layout()
-plt.savefig(os.path.join(OUT_DIR, "emocionalidad_vs_subjetividad.png"))
+plt.savefig(os.path.join(OUT_DIR, "intensidad_emocional_vs_subjetividad.png"))
 plt.close()
 
 # 4. KDE plot de emocionalidad
 plt.figure(figsize=(10, 6))
-sns.kdeplot(data=full_df, x="emocionalidad", hue="seccion", common_norm=False)
+plot = sns.kdeplot(data=full_df, x="emocionalidad", hue="seccion", common_norm=False)
 plt.axvline(x=3.0, color="gray", linestyle="--", linewidth=1.5, label="Neutral (3.0)")
 plt.title("Distribución de emocionalidad por sección (KDE)")
 plt.xlabel("Emocionalidad")
 plt.ylabel("Densidad")
-plt.legend()
 plt.tight_layout()
 plt.savefig(os.path.join(OUT_DIR, "kde_emocionalidad.png"))
 plt.close()
@@ -158,6 +159,19 @@ top_objetivos = full_df.sort_values("subjetividad", ascending=True).head(5)
 top_objetivos[["titulo", "seccion", "subjetividad"]].to_csv(
     os.path.join(OUT_DIR, "top5_mas_objetivos.csv"), index=False
 )
+
+# 10. Objetividad por tipo de autor
+plt.figure(figsize=(8, 6))
+sns.boxplot(data=full_df, x="autor_cat", y="objetividad", palette="pastel")
+plt.title("Objetividad por tipo de autor")
+plt.ylabel("Objetividad")
+plt.tight_layout()
+plt.savefig(os.path.join(OUT_DIR, "boxplot_autoria_objetividad.png"))
+plt.close()
+subj_desconocido = full_df[full_df["autor_cat"] == "Desconocido"]["subjetividad"]
+subj_identificado = full_df[full_df["autor_cat"] == "Identificado"]["subjetividad"]
+t_stat_subj, p_val_subj = ttest_ind(subj_desconocido, subj_identificado, equal_var=False)
+print(f"T-test subjetividad: t = {t_stat_subj:.3f}, p = {p_val_subj:.4f}")
 
 print("\n--- Top 5 artículos más subjetivos ---")
 print(top_subjetivos[["titulo", "seccion", "subjetividad"]])

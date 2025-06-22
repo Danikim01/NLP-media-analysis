@@ -121,4 +121,19 @@ plt.tight_layout()
 plt.savefig(os.path.join(OUT_DIR, "discrepancias_promedio_por_par.png"))
 plt.close()
 
+# 9. Top 3 discrepancias entre BERT y RoBERTa (normalizados)
+col_bert = "emocionalidad_bert_norm"
+col_roberta = "emocionalidad_roberta_multi_norm"
+col_diff = "diff_bert_roberta"
+
+norm_df[col_diff] = np.abs(norm_df[col_bert] - norm_df[col_roberta])
+top_3_discrepancias = norm_df.sort_values(col_diff, ascending=False).head(3)
+
+top_3_discrepancias[[
+    "titulo", "seccion", "emocionalidad_bert", "emocionalidad_roberta_multi", 
+    col_bert, col_roberta, col_diff
+]].to_csv(os.path.join(OUT_DIR, "top3_discrepancias_bert_vs_roberta.csv"), index=False)
+
+print("\nTop 3 discrepancias entre BERT y RoBERTa (normalizados) guardadas.")
+
 print("\nAnálisis y gráficos guardados en 'outputs/experiment3/analisis'")
