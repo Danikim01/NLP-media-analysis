@@ -1,6 +1,0 @@
-titulo,seccion,emocionalidad_bert_norm,emocionalidad_bert_translated_norm,diff_emocionalidad_bert_norm_emocionalidad_bert_translated_norm
-Impresionante incendio en una pañalera de Lomas del Mirador: colapsó el techo y evacúan a los vecinos,sociedad,-0.24767443545773182,0.8014483206236651,1.049122756081397
-La ingenuidad política del actual gobierno,negrx,0.23648936773826734,-0.5641900560970778,0.8006794238353452
-"""Basta de criminalizar la protesta social y a los que defienden los derechos""",el-pais,0.27615478151668427,-0.5076664970603256,0.7838212785770099
-"El adiós a Francisco ""Paco"" De la Cruz, un gran físico argentino",sociedad,0.6860485755634862,-0.004776603592155371,0.6908251791556416
-El capitán Alejandro de los Santos,negrx,0.45408935068385636,-0.2362721701526478,0.6903615208365042
